@@ -1,5 +1,4 @@
 # Raamatukogu labor
-## 2 × 90 minutit | Windows
 
 ---
 
@@ -147,49 +146,7 @@ Kontrolli GitHubis → **Actions** — pipeline peab läbima.
 
 ---
 
-## Etapp 4 — Koodimuudatused
-
-**Ülesanne:** Tee kaks muudatust mida klient ootab.
-
-Loo sprint branch:
-
-```powershell
-git checkout -b sprint-1
-```
-
-**Muudatus 1 — Otsing autori järgi**
-
-Ava `src/routes/books.js` ja leia `/search` endpoint. Uuri kuidas see praegu töötab. Lisa autori otsing nii et see töötab — kasuta internetist Express.js dokumentatsiooni kui vaja.
-
-Testi:
-```powershell
-Invoke-WebRequest "http://localhost:3000/api/books/search?author=Tammsaare" | Select-Object -ExpandProperty Content
-```
-
-Commit:
-```powershell
-git add src/routes/books.js
-git commit -m "Lisa otsing autori järgi closes #3"
-```
-
-**Muudatus 2 — Tagastatud laenude arv**
-
-Ava `src/server.js` ja leia `/api/stats` endpoint. Lisa `returnedLoans` väli — tagastatud laenude arv.
-
-Testi:
-```powershell
-Invoke-WebRequest http://localhost:3000/api/stats | Select-Object -ExpandProperty Content
-```
-
-Commit:
-```powershell
-git add src/server.js
-git commit -m "Lisa tagastatud laenude arv statistikasse closes #4"
-```
-
----
-
-## Etapp 5 — Testid ja merge
+## Etapp 4 — Testid ja merge
 
 **Ülesanne:** Veendu et kõik testid läbivad.
 
@@ -213,7 +170,7 @@ Kontrolli GitHubis → **Actions** — kõik kolm tööd peavad läbima.
 
 ---
 
-## Etapp 6 — Dokumentatsioon
+## Etapp 5 — Dokumentatsioon
 
 **Ülesanne:** Täida README.
 
@@ -229,7 +186,7 @@ git push
 
 ---
 
-## Etapp 7 — Sprint lõpetamine
+## Etapp 6 — Sprint lõpetamine
 
 **Ülesanne:** Sulge kõik Issues ja uuenda Kanban tahvlit.
 
