@@ -1,14 +1,17 @@
 # Raamatukogu
 
-<!-- TODO: Kirjelda mis see rakendus on (2-3 lauset) -->
+Small website where user can borrow books and give them back, search books by name or genre, log in, sign up
 
 ## Tehnoloogiad
 
-<!-- TODO: Lisa kasutatavad tehnoloogiad -->
+Launguages: Js
+Libs: express
 
 ## Käivitamine
 
-<!-- TODO: Lisa käivitamise juhised -->
+clone repo
+go into cloned repo
+run: docker compose up --build
 
 ## Testikasutajad
 
@@ -20,33 +23,33 @@
 
 | Meetod | URL | Kirjeldus |
 |--------|-----|-----------|
-| POST | /api/users/signup | <!-- TODO --> |
-| POST | /api/users/login | <!-- TODO --> |
-| POST | /api/users/logout | <!-- TODO --> |
-| GET | /api/users/me | <!-- TODO --> |
+| POST | /api/users/signup | Registers new user account |
+| POST | /api/users/login | Logs in user and returns session/authentication token |
+| POST | /api/users/logout | Logs out user and deletes active session |
+| GET | /api/users/me | Returns user data such as username and name |
 
 ### Raamatud
 
 | Meetod | URL | Kirjeldus |
 |--------|-----|-----------|
-| GET | /api/books | <!-- TODO --> |
-| GET | /api/books/:id | <!-- TODO --> |
-| GET | /api/books/search | <!-- TODO --> |
-| GET | /api/books/genres | <!-- TODO --> |
-| GET | /api/books/genre/:genre | <!-- TODO --> |
+| GET | /api/books | Returns all books |
+| GET | /api/books/:id | Returns book by id |
+| GET | /api/books/search | Returns search result. Searches by name and author |
+| GET | /api/books/genres | Returns all genres |
+| GET | /api/books/genre/:genre | Returns book by genre |
 
 ### Laenud
 
 | Meetod | URL | Kirjeldus |
 |--------|-----|-----------|
-| POST | /api/loans | <!-- TODO --> |
-| POST | /api/loans/:id/return | <!-- TODO --> |
-| GET | /api/loans | <!-- TODO --> |
-| GET | /api/loans/me | <!-- TODO --> |
+| POST | /api/loans | loan book for auth user. If there are 3 loans then user cannot take more books |
+| POST | /api/loans/:id/return | Returns user loan |
+| GET | /api/loans | Return all loans across all users |
+| GET | /api/loans/me | Retruns loans for auth user |
 
 ## Testid
 
-<!-- TODO: Kirjelda kuidas teste käivitada -->
+run test.js in src directory while app is runnig
 
 ## GitHub Actions
 
