@@ -13,9 +13,21 @@ router.get("/search", (req, res) => {
   if (!title && !author) {
     return res.status(400).json({ error: "Lisa parameeter ?title=... või ?author=..." });
   }
+  
   let results = data.books;
-  if (title) results = results.filter((b) => b.title.toLowerCase().includes(title.toLowerCase()));
-  if (author) results = results.filter((b) => b.author.toLowerCase().includes(author.toLowerCase()));
+
+  // If both parameters are identical (single search bar use case)
+  if (title === author) {
+    results = results.filter((b) => 
+      b.title.toLowerCase().includes(title.toLowerCase()) || 
+      b.author.toLowerCase().includes(author.toLowerCase())
+    );
+  } else {
+    // Fallback to separate filters if they are searching specific fields
+    if (title) results = results.filter((b) => b.title.toLowerCase().includes(title.toLowerCase()));
+    if (author) results = results.filter((b) => b.author.toLowerCase().includes(author.toLowerCase()));
+  }
+
   res.json({ results, count: results.length });
 });
 

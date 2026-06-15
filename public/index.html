@@ -35,7 +35,7 @@
         <div class="stats-bar" id="stats-bar"></div>
 
         <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Otsi pealkirja järgi..." oninput="searchBooks()">
+            <input type="text" id="search-input" placeholder="Otsi pealkirja ja autori järgi..." oninput="searchBooks()">
             <select id="genre-filter" onchange="filterByGenre()">
                 <option value="">Kõik žanrid</option>
             </select>
@@ -89,9 +89,14 @@
         async function searchBooks() {
             const q = document.getElementById('search-input').value;
             document.getElementById('genre-filter').value = '';
+            
             if (!q) return loadBooks();
-            const res = await fetch(`/api/books/search?title=${encodeURIComponent(q)}`);
+            
+            // We send the same string 'q' to both title and author parameters
+            const encodedQuery = encodeURIComponent(q);
+            const res = await fetch(`/api/books/search?title=${encodedQuery}&author=${encodedQuery}`);
             const d = await res.json();
+            
             renderBooks(d.results);
         }
 
