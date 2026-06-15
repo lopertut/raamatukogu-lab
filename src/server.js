@@ -31,12 +31,22 @@ app.get("/health", (req, res) => {
 });
 
 app.get("/api/stats", (req, res) => {
+  const totalBooks = data.books.length;
+  const availableBooks = data.books.filter(b => b.available).length;
+  const totalUsers = data.users.length;
+  
+  // 1. Count active loans (where returnedAt is null/missing)
+  const activeLoans = data.loans.filter(l => !l.returnedAt).length;
+  
+  // 2. NEW: Count returned books (where returnedAt exists)
+  const returnedBooks = data.loans.filter(l => l.returnedAt).length;
+
   res.json({
-    totalBooks: data.books.length,
-    availableBooks: data.books.filter((b) => b.available).length,
-    totalLoans: data.loans.length,
-    activeLoans: data.loans.filter((l) => !l.returnedAt).length,
-    totalUsers: data.users.length,
+    totalBooks,
+    availableBooks,
+    activeLoans,
+    returnedBooks, // <-- Send this to the frontend
+    totalUsers
   });
 });
 

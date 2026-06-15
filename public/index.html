@@ -63,9 +63,12 @@
                     <div class="stat"><span class="stat-num">${d.totalBooks}</span><span class="stat-label">Raamatut kokku</span></div>
                     <div class="stat"><span class="stat-num">${d.availableBooks}</span><span class="stat-label">Saadaval</span></div>
                     <div class="stat"><span class="stat-num">${d.activeLoans}</span><span class="stat-label">Aktiivsed laenud</span></div>
+                    <div class="stat"><span class="stat-num">${d.returnedBooks}</span><span class="stat-label">Tagastatud</span></div>
                     <div class="stat"><span class="stat-num">${d.totalUsers}</span><span class="stat-label">Kasutajat</span></div>
                 `;
-            } catch {}
+            } catch (err) {
+                console.error("Stats loading failed:", err);
+            }
         }
 
         async function loadCurrentUser() {
